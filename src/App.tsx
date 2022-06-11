@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Grid from "./components/Grid";
+import Karen from "./img/Karen.webp";
+import Gary from "./img/Gary.webp";
+import Krabs from "./img/Krabs.webp";
+import MrsPuff from "./img/Mrs_Puff.webp";
+import Patrick from "./img/Patrick.webp";
+import PearlKrabs from "./img/Pearl_Krabs.webp";
+import Plankton from "./img/Plankton.webp";
+import Sandy from "./img/Sandy.webp";
+import SpongeBob from "./img/SpongeBob.webp";
+import Squidward from "./img/Squidward.webp";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [itemList, setItemList] = useState([
+		Karen,
+		Gary,
+		Krabs,
+		MrsPuff,
+		Patrick,
+		PearlKrabs,
+		Plankton,
+		Sandy,
+		SpongeBob,
+		Squidward,
+	]);
+
+	return (
+		<div>
+			<Grid itemList={itemList} />
+		</div>
+	);
 }
 
 export default App;
