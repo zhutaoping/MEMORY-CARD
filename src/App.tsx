@@ -100,10 +100,10 @@ function App() {
 				<div className={styles.scoreBox}>
 					<h1 className={styles.bestScore}>
 						最佳成績：
-						<span>{bestScore === 10 ? `滿分 ${bestScore}` : bestScore}</span> 分
+						<span>{bestScore}</span>分
 					</h1>
 					<h1>
-						目前得分：<span>{score}</span> 分
+						目前得分：<span>{score}</span>分
 					</h1>
 				</div>
 				<Button onClick={handleReset}>重玩</Button>

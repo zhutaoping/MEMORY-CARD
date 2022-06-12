@@ -16,11 +16,13 @@
 }
 
 .scoreBox span {
-	color: #4f005f;
+	padding: 0px 8px;
+	color: white;
+	background-color: #4f005f;
 }
 
 .header button {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 }
 @media screen and (max-width: 450px) {
 	.title {
