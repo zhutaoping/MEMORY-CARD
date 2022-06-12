@@ -58,7 +58,7 @@ function App() {
 			console.log("game over");
 			console.log("final score", score);
 			if (score > bestScore) setBestScore(score);
-			handleReset();
+			// handleReset();
 			setShowModal(true);
 		} else {
 			setCheckArr((prevState) => [...prevState, id]);
@@ -71,11 +71,12 @@ function App() {
 	const handleReset = () => {
 		setCheckArr([]);
 		getRandomArr();
+		setScore(0);
 	};
 
 	const handleConfirm = (): void => {
 		setShowModal(false);
-		setScore(0);
+		handleReset();
 	};
 
 	return (
