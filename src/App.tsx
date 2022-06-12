@@ -96,7 +96,7 @@ function App() {
 		<div>
 			{showModal && <Modal onConfirm={handleConfirm} score={score} />}
 			<div className={styles.header}>
-				<h1 className={styles.title}>點一張圖得一分，重複點即出局</h1>
+				<h1 className={styles.title}>點圖得分，重複點即出局</h1>
 				<div className={styles.scoreBox}>
 					<h1 className={styles.bestScore}>
 						最佳成績：
