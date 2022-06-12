@@ -1,8 +1,25 @@
 .header {
 	color: rgb(1, 1, 54);
 	text-align: center;
+	font-size: clamp(0.7rem, 0.5548rem + 0.6452vw, 1.2rem);
 }
 
-.title {
-	font-size: 2rem;
+button {
+	font-family: inherit;
+	font-size: 1.2rem;
+	padding: 5px 20px;
+	color: white;
+	background-color: #4f005f;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	filter: brightness(120%);
+	box-shadow: 2px 2px 5px rgb(0 0 0 / 0.3);
+}
+
+button:active {
+	transform: translateY(1px);
+	box-shadow: 1px 1px 2px rgb(0 0 0 / 0.5);
 }

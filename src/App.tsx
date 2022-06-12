@@ -1,6 +1,10 @@
-import { useState, MouseEvent } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import styles from "./App.module.css";
 import Grid from "./components/Grid";
+import Modal from "./components/Modal";
+import Button from "./components/Button";
+// import classes from "./components/Button";
+
 import Karen from "./img/Karen.webp";
 import Gary from "./img/Gary.webp";
 import Krabs from "./img/Krabs.webp";
@@ -13,7 +17,7 @@ import SpongeBob from "./img/SpongeBob.webp";
 import Squidward from "./img/Squidward.webp";
 
 function App() {
-	let counter = 0;
+	// let counter = 0;
 
 	const itemList = [
 		{ src: Karen, id: 0 },
@@ -30,7 +34,12 @@ function App() {
 	const [checkArr, setCheckArr] = useState<number[]>([]);
 	const [score, setScore] = useState(0);
 	const [bestScore, setBestScore] = useState(0);
-	const [randomArr, setRandomArr] = useState(getRandomArr());
+	const [randomArr, setRandomArr] = useState<number[]>([]);
+	const [showModal, setShowModal] = useState(false);
+
+	useEffect(() => {
+		getRandomArr();
+	}, []);
 
 	function getRandomArr(): number[] {
 		const nums = new Set<number>();
@@ -38,12 +47,9 @@ function App() {
 		while (nums.size !== 10) {
 			nums.add(Math.floor(Math.random() * 10));
 		}
-		const numArr = Array.from(nums);
-		if (counter > 0) {
-			setRandomArr(numArr);
-		}
-		counter++;
-		return numArr;
+		const tempArr = Array.from(nums);
+		setRandomArr(tempArr);
+		return tempArr;
 	}
 
 	const handleClick = (e: MouseEvent<HTMLElement>) => {
@@ -53,6 +59,7 @@ function App() {
 			console.log("final score", score);
 			if (score > bestScore) setBestScore(score);
 			handleReset();
+			setShowModal(true);
 		} else {
 			setCheckArr((prevState) => [...prevState, id]);
 			setScore((prevState) => prevState + 1);
@@ -62,21 +69,26 @@ function App() {
 	};
 
 	const handleReset = () => {
-		setScore(0);
 		setCheckArr([]);
 		getRandomArr();
 	};
 
+	const handleConfirm = (): void => {
+		setShowModal(false);
+		setScore(0);
+	};
+
 	return (
 		<div>
+			{showModal && <Modal onConfirm={handleConfirm} score={score} />}
 			<div className={styles.header}>
-				<h1 className={styles.title}>每按一張圖得一分，重複點選即判出局</h1>
+				<h1 className={styles.title}>點選一張圖得一分，重複點選即判出局</h1>
 				<h1 className={styles.bestScore}>
 					最佳成績：{bestScore === 10 ? `滿分 ${bestScore}` : bestScore} 分
 				</h1>
-				<button type="button" onClick={handleReset}>
+				<Button type="button" onClick={handleReset}>
 					重玩
-				</button>
+				</Button>
 			</div>
 			<Grid itemList={itemList} randomArr={randomArr} onClick={handleClick} />
 		</div>
