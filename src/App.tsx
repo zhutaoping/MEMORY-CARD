@@ -3,8 +3,7 @@ import styles from "./App.module.css";
 import Grid from "./components/Grid";
 import Modal from "./components/Modal";
 import Button from "./components/Button";
-// import classes from "./components/Button";
-
+// images
 import Karen from "./img/Karen.webp";
 import Gary from "./img/Gary.webp";
 import Krabs from "./img/Krabs.webp";
@@ -15,10 +14,11 @@ import Plankton from "./img/Plankton.webp";
 import Sandy from "./img/Sandy.webp";
 import SpongeBob from "./img/SpongeBob.webp";
 import Squidward from "./img/Squidward.webp";
+// audio
+import click from "./audio/rclick.mp3";
+import coinUp from "./audio/coin-up.mp3";
 
 function App() {
-	// let counter = 0;
-
 	const itemList = [
 		{ src: Karen, id: 0 },
 		{ src: Gary, id: 1 },
@@ -57,15 +57,28 @@ function App() {
 		if (checkArr.includes(id)) {
 			console.log("game over");
 			console.log("final score", score);
-			if (score > bestScore) setBestScore(score);
-			// handleReset();
+			gameOverAudio();
 			setShowModal(true);
+			if (score > bestScore) setBestScore(score);
 		} else {
+			rclickAudio();
 			setCheckArr((prevState) => [...prevState, id]);
 			setScore((prevState) => prevState + 1);
 			console.log("score", score);
 		}
 		getRandomArr();
+	};
+
+	const gameOverAudio = () => {
+		const audio = document.createElement("audio");
+		audio.src = coinUp;
+		audio.play();
+	};
+
+	const rclickAudio = () => {
+		const audio = document.createElement("audio");
+		audio.src = click;
+		audio.play();
 	};
 
 	const handleReset = () => {
@@ -83,13 +96,17 @@ function App() {
 		<div>
 			{showModal && <Modal onConfirm={handleConfirm} score={score} />}
 			<div className={styles.header}>
-				<h1 className={styles.title}>點選一張圖得一分，重複點選即判出局</h1>
-				<h1 className={styles.bestScore}>
-					最佳成績：{bestScore === 10 ? `滿分 ${bestScore}` : bestScore} 分
-				</h1>
-				<Button type="button" onClick={handleReset}>
-					重玩
-				</Button>
+				<h1 className={styles.title}>點一張圖得一分，重複點即出局</h1>
+				<div className={styles.scoreBox}>
+					<h1 className={styles.bestScore}>
+						最佳成績：
+						<span>{bestScore === 10 ? `滿分 ${bestScore}` : bestScore}</span> 分
+					</h1>
+					<h1>
+						目前得分：<span>{score}</span> 分
+					</h1>
+				</div>
+				<Button onClick={handleReset}>重玩</Button>
 			</div>
 			<Grid itemList={itemList} randomArr={randomArr} onClick={handleClick} />
 		</div>

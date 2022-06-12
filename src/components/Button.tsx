@@ -1,8 +1,7 @@
-import React, { MouseEventHandler } from "react";
 import classes from "./Button.module.css";
 
 type Props = {
-	onClick?: MouseEventHandler;
+	onClick?: React.MouseEventHandler;
 	type?: "submit" | "reset" | "button" | undefined;
 	children?: React.ReactNode;
 };

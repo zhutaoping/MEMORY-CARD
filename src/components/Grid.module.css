@@ -15,5 +15,10 @@ img {
 
 .item {
 	background-image: linear-gradient(180deg, #03cfcf, teal);
-	box-shadow: 4px 3px 1px 1px rgb(0 0 0 / 0.2);
+	box-shadow: 3px 3px 1px 1px rgb(0 0 0 / 0.2);
+}
+
+.item:active {
+	transform: translateY(1px);
+	box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 0.4);
 }
