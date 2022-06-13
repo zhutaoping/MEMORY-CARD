@@ -14,9 +14,11 @@ import Plankton from "./img/Plankton.webp";
 import Sandy from "./img/Sandy.webp";
 import SpongeBob from "./img/SpongeBob.webp";
 import Squidward from "./img/Squidward.webp";
+import spinner from "./img/Spinner.svg";
 // audio
 import click from "./audio/rclick.mp3";
 import coinUp from "./audio/coin-up.mp3";
+import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils";
 
 function App() {
 	const itemList = [
