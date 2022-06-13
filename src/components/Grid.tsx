@@ -9,20 +9,20 @@ interface Props {
 }
 
 const Grid: FC<Props> = ({ itemList, onClick, randomArr }) => {
-	const [showSpinner, setShowSpinner] = useState(true);
+	const [loaded, setLoaded] = useState(false);
 
 	return (
 		<div className={styles.grid}>
 			{randomArr.map((num) => (
 				<div className={styles.item} key={num}>
-					{showSpinner && <Spinner />}
+					{!loaded && <Spinner />}
 					<img
-						style={showSpinner ? { display: "none" } : {}}
+						style={loaded ? {} : { display: "none" }}
 						src={itemList[num].src}
 						alt="random pic"
 						data-id={itemList[num].id}
 						onClick={onClick}
-						onLoad={() => setShowSpinner(false)}
+						onLoad={() => setLoaded(true)}
 					/>
 				</div>
 			))}
